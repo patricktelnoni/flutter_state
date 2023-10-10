@@ -12,19 +12,35 @@ class SecondPage extends StatefulWidget {
 class _SecondPageState extends State<SecondPage>{
   @override
   Widget build(BuildContext context) {
-    return Consumer<CounterModel>(builder: (context, value, child) => Scaffold(
-      appBar: AppBar(
-        title: Text("Second Page"),
-      ),
-      body: Center(
-        child: TextButton(
-          onPressed: () {},
-          child: Text(
-              value.count.toString(),
-              style: Theme.of(context).textTheme.headlineMedium
+    return Consumer<CounterModel>(builder: (context, value, child) =>
+        Scaffold(
+          appBar: AppBar(
+            title: Text("Second Page"),
           ),
-        ),
-      ),
-    ));
+          body: Center(
+            child: Column(
+              children: [
+                TextButton(
+                  onPressed: () {},
+                  child: Text(
+                      value.count.toString(),
+                      style: Theme.of(context).textTheme.headlineMedium
+                  ),
+                ),
+                
+              ],
+            ),
+
+          ),
+            floatingActionButton: FloatingActionButton(
+              onPressed: (){
+                final counter = context.read<CounterModel>();
+                counter.down();
+              },
+              tooltip: 'Increment',
+              child: const Icon(Icons.remove),
+            )
+        )
+    );
   }
 }
